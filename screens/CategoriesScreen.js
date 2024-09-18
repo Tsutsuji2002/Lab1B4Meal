@@ -1,9 +1,9 @@
 import React from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import CategoryGridTile from '../components/CategoryGridTile';
 import { CATEGORIES } from '../data/dummy-data';
 
-function CategoriesScreen({ navigation }) {
+function CategoriesScreen({ navigation, orientation }) {
   function renderGridItem(itemData) {
     return (
       <CategoryGridTile
@@ -20,11 +20,14 @@ function CategoriesScreen({ navigation }) {
   }
 
   return (
-    <FlatList
-      data={CATEGORIES}
-      renderItem={renderGridItem}
-      numColumns={2}
-    />
+    <View style={{ flex: 1 }}>
+      <FlatList
+        data={CATEGORIES}
+        renderItem={renderGridItem}
+        numColumns={orientation === 'LANDSCAPE' ? 3 : 2}
+        key={orientation === 'LANDSCAPE' ? 'landscape' : 'portrait'}
+      />
+    </View>
   );
 }
 

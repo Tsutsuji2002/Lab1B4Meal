@@ -7,7 +7,7 @@ import Colors from '../constants/Colors';
 
 const Drawer = createDrawerNavigator();
 
-export function DrawerNavigator() {
+export function DrawerNavigator({ orientation }) {
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -16,11 +16,13 @@ export function DrawerNavigator() {
         },
         headerTintColor: 'white',
         drawerActiveTintColor: Colors.accentColor,
+        drawerPosition: orientation === 'LANDSCAPE' ? 'left' : 'left',
+        drawerType: orientation === 'LANDSCAPE' ? 'permanent' : 'front',
       }}
     >
       <Drawer.Screen 
-        name="MealsCategories" 
-        component={MealsNavigator} 
+        name="MealsDrawer" 
+        children={({ navigation }) => <MealsNavigator navigation={navigation} orientation={orientation} />}
         options={{
           title: 'Món ăn',
           drawerIcon: ({ color, size }) => (
@@ -29,8 +31,8 @@ export function DrawerNavigator() {
         }}
       />
       <Drawer.Screen 
-        name="Filters" 
-        component={FiltersScreen} 
+        name="FiltersDrawer" 
+        children={({ navigation }) => <FiltersScreen navigation={navigation} orientation={orientation} />}
         options={{
           title: 'Lọc',
           drawerIcon: ({ color, size }) => (

@@ -3,11 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, ImageBackground } from 'react
 import DefaultText from './DefaultText';
 
 const MealItem = props => {
+  const { orientation } = props;
+
   return (
     <View style={styles.mealItem}>
       <TouchableOpacity onPress={props.onSelectMeal}>
         <View>
-          <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
+          <View style={orientation === 'LANDSCAPE' ? styles.mealRowLandscape : styles.mealRowPortrait}>
             <ImageBackground source={{ uri: props.image }} style={styles.bgImage}>
               <View style={styles.titleContainer}>
                 <Text style={styles.title} numberOfLines={1}>
@@ -15,11 +17,11 @@ const MealItem = props => {
                 </Text>
               </View>
             </ImageBackground>
-          </View>
-          <View style={{ ...styles.mealRow, ...styles.mealDetail }}>
-            <DefaultText>{props.duration}m</DefaultText>
-            <DefaultText>{props.complexity.toUpperCase()}</DefaultText>
-            <DefaultText>{props.affordability.toUpperCase()}</DefaultText>
+            <View style={styles.mealDetail}>
+              <DefaultText>{props.duration}m</DefaultText>
+              <DefaultText>{props.complexity.toUpperCase()}</DefaultText>
+              <DefaultText>{props.affordability.toUpperCase()}</DefaultText>
+            </View>
           </View>
         </View>
       </TouchableOpacity>
@@ -41,11 +43,13 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'flex-end',
   },
-  mealRow: {
-    flexDirection: 'row',
+  mealRowPortrait: {
+    flexDirection: 'column',
+    height: '100%',
   },
-  mealHeader: {
-    height: '85%',
+  mealRowLandscape: {
+    flexDirection: 'row',
+    height: '100%',
   },
   mealDetail: {
     paddingHorizontal: 10,

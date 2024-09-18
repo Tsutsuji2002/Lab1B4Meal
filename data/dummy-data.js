@@ -148,7 +148,7 @@ export const MEALS = [
     title: 'Trứng Chiên',
     affordability: 'phải chăng',
     complexity: 'đơn giản',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sunny_side_up_egg.jpg/800px-Sunny_side_up_egg.jpg',
+    imageUrl: 'https://bizweb.dktcdn.net/100/004/714/articles/cach-chien-trung-cuc-ngon-1.png?v=1638954578213',
     duration: 5,
     ingredients: [
       '2 quả trứng',
