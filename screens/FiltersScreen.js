@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
+import { View, Text, StyleSheet, Switch, Button, Platform } from 'react-native';
 import { CustomHeaderButton, CustomHeaderButtons } from '../components/CustomHeaderButton';
 import { useDispatch } from 'react-redux';
-// import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 import { setFilters } from '../store/actions/meals';
 
@@ -38,6 +37,13 @@ function FiltersScreen({ navigation }) {
     dispatch(setFilters(appliedFilters));
   }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian, dispatch]);
 
+  const resetFilters = () => {
+    setIsGlutenFree(false);
+    setIsLactoseFree(false);
+    setIsVegan(false);
+    setIsVegetarian(false);
+  };
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -54,7 +60,7 @@ function FiltersScreen({ navigation }) {
 
   return (
     <View style={styles.screen}>
-      <Text style={styles.title}>Available Filters / Restrictions</Text>
+      <Text style={styles.title}>Bộ lọc / Hạn chế</Text>
       <FilterSwitch
         label="Không chứa gluten"
         state={isGlutenFree}
@@ -75,6 +81,13 @@ function FiltersScreen({ navigation }) {
         state={isVegetarian}
         onChange={newValue => setIsVegetarian(newValue)}
       />
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Làm mới bộ lọc"
+          color={Colors.primaryColor}
+          onPress={resetFilters}
+        />
+      </View>
     </View>
   );
 }
@@ -82,20 +95,38 @@ function FiltersScreen({ navigation }) {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    alignItems: 'center'
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
   title: {
     fontFamily: 'Roboto',
-    fontSize: 22,
-    margin: 20,
-    textAlign: 'center'
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 20,
+    textAlign: 'center',
+    color: Colors.primaryColor,
   },
   filterContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80%',
-    marginVertical: 15
+    width: '90%',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#f2f2f2',
+    borderRadius: 10,
+    marginVertical: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
+    elevation: 3,
+  },
+  buttonContainer: {
+    marginTop: 30,
+    width: '60%',
   }
 });
 

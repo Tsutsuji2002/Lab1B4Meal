@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, StyleSheet } from 'react-native';
 import CategoryGridTile from '../components/CategoryGridTile';
 import { CATEGORIES } from '../data/dummy-data';
 
@@ -15,20 +15,39 @@ function CategoriesScreen({ navigation, orientation }) {
             categoryTitle: itemData.item.title,
           });
         }}
+        orientation={orientation}
       />
     );
   }
 
+  const columnCount = orientation === 'LANDSCAPE' ? 3 : 2;
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <FlatList
         data={CATEGORIES}
         renderItem={renderGridItem}
-        numColumns={orientation === 'LANDSCAPE' ? 3 : 2}
-        key={orientation === 'LANDSCAPE' ? 'landscape' : 'portrait'}
+        numColumns={columnCount}
+        key={orientation}
+        columnWrapperStyle={
+          columnCount === 3 ? styles.landscapeColumn : styles.portraitColumn
+        }
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
+  landscapeColumn: {
+    justifyContent: 'space-between',
+  },
+  portraitColumn: {
+    justifyContent: 'space-around', 
+  },
+});
 
 export default CategoriesScreen;

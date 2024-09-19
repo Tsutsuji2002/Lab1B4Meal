@@ -144,7 +144,7 @@ export const MEALS = [
   },
   {
     id: 'm12',
-    categoryIds: ['c2'],
+    categoryIds: ['c2', 'c7'],
     title: 'Trứng Chiên',
     affordability: 'phải chăng',
     complexity: 'đơn giản',
@@ -186,8 +186,8 @@ export const MEALS = [
       'Thêm rau xà lách, cà chua và sốt mayonnaise.'
     ],
     isGlutenFree: false,
-    isVegan: true,
-    isVegetarian: true,
+    isVegan: false,
+    isVegetarian: false,
     isLactoseFree: false
   },
   {
@@ -210,8 +210,8 @@ export const MEALS = [
       'Thêm rau và sốt mayonnaise.'
     ],
     isGlutenFree: false,
-    isVegan: true,
-    isVegetarian: true,
+    isVegan: false,
+    isVegetarian: false,
     isLactoseFree: false
   },
   {
@@ -235,13 +235,13 @@ export const MEALS = [
       'Thêm xà lách và cà chua.'
     ],
     isGlutenFree: false,
-    isVegan: true,
-    isVegetarian: true,
+    isVegan: false,
+    isVegetarian: false,
     isLactoseFree: false
   },
   {
     id: 'm14',
-    categoryIds: ['c4'],
+    categoryIds: ['c4', 'c7'],
     title: 'Xúc Xích Đức',
     affordability: 'phải chăng',
     complexity: 'đơn giản',
@@ -258,7 +258,7 @@ export const MEALS = [
     ],
     isGlutenFree: false,
     isVegan: false,
-    isVegetarian: true,
+    isVegetarian: false,
     isLactoseFree: false
   }
 ];

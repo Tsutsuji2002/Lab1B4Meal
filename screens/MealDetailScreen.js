@@ -47,11 +47,11 @@ function MealDetailScreen({ route, navigation }) {
         <Text>{selectedMeal.complexity.toUpperCase()}</Text>
         <Text>{selectedMeal.affordability.toUpperCase()}</Text>
       </View>
-      <Text style={styles.title}>Ingredients</Text>
+      <Text style={styles.title}>Nguyên liệu chuẩn bị</Text>
       {selectedMeal.ingredients.map(ingredient => (
         <ListItem key={ingredient}>{ingredient}</ListItem>
       ))}
-      <Text style={styles.title}>Steps</Text>
+      <Text style={styles.title}>Các bước thực hiện</Text>
       {selectedMeal.steps.map(step => (
         <ListItem key={step}>{step}</ListItem>
       ))}
